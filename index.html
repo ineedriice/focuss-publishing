@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Focuss Publishing</title>
+  <meta name="description" content="Focuss Publishing — concise, practical books on self-improvement, motivation, looksmaxxing, money and lifestyle." />
+  <style>
+    /* Minimalist mono theme — black & white */
+    :root{
+      --bg:#fff;
+      --fg:#0b0b0b;
+      --muted:#6b6b6b;
+      --accent:#000;
+      --max-width:1100px;
+      --radius:12px;
+      --gap:20px;
+      --container-pad:24px;
+      --card-shadow: rgba(11,11,11,0.06);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      font-size:16px;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:var(--container-pad)}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{font-weight:700;letter-spacing:0.02em}
+    nav{display:flex;gap:18px;align-items:center}
+    .nav-link{font-size:0.95rem;color:var(--muted)}
+    .cta{padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.95rem}
+    .hamburger{display:none;border:0;background:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:center;padding:40px 0}
+    .hero h1{margin:0;font-size:1.25rem;font-weight:700}
+    .hero p{margin:12px 0;color:var(--muted)}
+    .hero-actions{display:flex;gap:12px;align-items:center}
+
+    /* Categories */
+    .cats{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}
+    .cat{padding:8px 12px;border-radius:999px;border:1px solid #eee;font-size:0.85rem;color:var(--muted)}
+
+    /* Books grid */
+    .books{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0}
+    .book{display:flex;gap:14px;padding:16px;border-radius:12px;border:1px solid #f0f0f0;align-items:flex-start}
+    .cover{width:100px;height:140px;background:#f6f6f6;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
+    .meta h3{margin:0;font-size:1rem}
+    .meta p{margin:8px 0;color:var(--muted);font-size:0.92rem}
+    .price-buy{display:flex;gap:8px;align-items:center;margin-top:8px}
+    .price{font-weight:700}
+    .buy{padding:8px 10px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem}
+    .sample{font-size:0.82rem;color:var(--muted);border-top:1px dashed #eee;padding-top:10px;margin-top:10px}
+
+    /* Lead magnet */
+    .lead{display:flex;gap:20px;align-items:center;padding:20px;border-radius:12px;border:1px solid #f0f0f0;margin:36px 0}
+    .lead .desc{flex:1}
+    .lead form{display:flex;gap:8px}
+    .input{padding:10px 12px;border-radius:8px;border:1px solid #ddd}
+    .btn{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:700}
+
+    /* About + Articles */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:28px 0}
+    .card{padding:18px;border-radius:12px;border:1px solid #f0f0f0}
+    .articles li{margin:10px 0}
+
+    /* Testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}
+    .test{padding:14px;border-radius:12px;border:1px solid #f0f0f0;font-size:0.95rem}
+    .rating{font-weight:700;color:var(--muted)}
+
+    /* FAQ */
+    .faq{margin:28px 0}
+    .faq-item{border-bottom:1px solid #f0f0f0;padding:12px 0}
+    .q{cursor:pointer;font-weight:700}
+    .a{display:none;padding-top:8px;color:var(--muted)}
+
+    /* Contact */
+    .contact{margin:28px 0}
+    .contact form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact form textarea{grid-column:1 / -1;min-height:120px;padding:10px;border-radius:8px;border:1px solid #ddd}
+
+    /* Footer */
+    footer{border-top:1px solid #f0f0f0;padding:18px 0;margin-top:30px;color:var(--muted);font-size:0.9rem}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .books{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+      .hamburger{display:block}
+    }
+    @media (max-width:640px){
+      .books{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+      .wrap{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Focuss Publishing</div>
+      <nav aria-label="Main navigation">
+        <a class="nav-link" href="#books">Books</a>
+        <a class="nav-link" href="#lead">Free</a>
+        <a class="nav-link" href="#articles">Articles</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+      <button class="hamburger" aria-label="menu" onclick="toggleNav()">☰</button>
+      <a class="cta" href="#books">Browse Books</a>
+    </header>
+
+    <section class="hero" id="hero">
+      <div>
+        <h1>Practical mini-guides to upgrade your life — concise books on self-improvement, motivation, fitness & money that get straight to results.</h1>
+        <p>Short, actionable books made for people who want measurable progress, not fluff.</p>
+        <div class="hero-actions">
+          <a class="cta" href="#lead">Get the free 10-Day Improvement Challenge</a>
+          <a class="nav-link" href="#books">See new releases →</a>
+        </div>
+
+        <div class="cats" aria-hidden="false">
+          <span class="cat">Self-Improvement</span>
+          <span class="cat">Motivation</span>
+          <span class="cat">Fitness / Looksmaxxing</span>
+          <span class="cat">Money</span>
+          <span class="cat">Lifestyle</span>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <strong>Featured:</strong>
+          <h2 style="margin:8px 0 6px 0">10-Day Improvement Challenge</h2>
+          <p style="margin:0;color:var(--muted)">A compact daily plan with micro-tasks that stack into real habits. Free for subscribers.</p>
+          <div style="margin-top:12px">
+            <a class="cta" href="#lead">Get it free</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="books">
+      <h2 style="margin:0 0 8px 0">Books</h2>
+      <p style="color:var(--muted);margin:0 0 18px 0">Covers, short pitches, sample pages and direct buy links. Clear pricing.</p>
+
+      <div class="books">
+        <!-- Book 1 -->
+        <article class="book" id="book-1">
+          <div class="cover">Cover A</div>
+          <div class="meta">
+            <h3>Level Up: Micro-Habits for Faster Progress</h3>
+            <p>One-line pitch: 30 daily micro-actions to build momentum across focus, fitness and finances.</p>
+            <div class="price-buy">
+              <div class="price">₹149</div>
+              <a class="buy" href="#">Buy</a>
+              <a class="nav-link" href="#" onclick="openSample(event,'sample-1')">Sample</a>
+            </div>
+            <div id="sample-1" class="sample" aria-hidden="true">Sample excerpt — Day 1: Start with a 3-minute focused routine: list, prioritize, act.</div>
+          </div>
+        </article>
+
+        <!-- Book 2 -->
+        <article class="book" id="book-2">
+          <div class="cover">Cover B</div>
+          <div class="meta">
+            <h3>Drive: The Motivation Playbook</h3>
+            <p>Short pitch: Practical triggers and tiny rituals to sustain motivation when results lag.</p>
+            <div class="price-buy">
+              <div class="price">₹99</div>
+              <a class="buy" href="#">Buy</a>
+              <a class="nav-link" href="#" onclick="openSample(event,'sample-2')">Sample</a>
+            </div>
+            <div id="sample-2" class="sample" aria-hidden="true">Sample excerpt — Reframe setbacks: a quick 3-question exercise to re-center next actions.</div>
+          </div>
+        </article>
+
+        <!-- Book 3 -->
+        <article class="book" id="book-3">
+          <div class="cover">Cover C</div>
+          <div class="meta">
+            <h3>Look & Move: Simple Routines for Better Results</h3>
+            <p>Short pitch: 12-week routines for strength, posture and grooming—no gym myth required.</p>
+            <div class="price-buy">
+              <div class="price">₹199</div>
+              <a class="buy" href="#">Buy</a>
+              <a class="nav-link" href="#" onclick="openSample(event,'sample-3')">Sample</a>
+            </div>
+            <div id="sample-3" class="sample" aria-hidden="true">Sample excerpt — Weekly plan: two full-body sessions and a grooming checklist for rapid baseline gains.</div>
+          </div>
+        </article>
+
+        <!-- More placeholder books (repeatable) -->
+        <article class="book">
+          <div class="cover">Cover D</div>
+          <div class="meta">
+            <h3>Money Starter: Build Your First Savings System</h3>
+            <p>One-line pitch: Set up simple systems—budget, automate, and scale small wins into savings.</p>
+            <div class="price-buy">
+              <div class="price">₹129</div>
+              <a class="buy" href="#">Buy</a>
+              <a class="nav-link" href="#" onclick="alert('Sample coming soon')">Sample</a>
+            </div>
+            <div class="sample">Sample excerpt — Rule of 3: Save, invest, and insurance—prioritize in that order.</div>
+          </div>
+        </article>
+
+        <article class="book">
+          <div class="cover">Cover E</div>
+          <div class="meta">
+            <h3>Daily Focus: Minimal Routines for Peak Weeks</h3>
+            <p>Short pitch: 10-minute morning and evening rituals that protect your productive hours.</p>
+            <div class="price-buy">
+              <div class="price">₹89</div>
+              <a class="buy" href="#">Buy</a>
+              <a class="nav-link" href="#" onclick="alert('Sample coming soon')">Sample</a>
+            </div>
+            <div class="sample">Sample excerpt — 10-minute morning: clear your top 3 and block the next 90 minutes.</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="lead" class="lead">
+      <div class="desc">
+        <strong>Free: 10-Day Improvement Challenge</strong>
+        <p style="margin:6px 0;color:var(--muted)">A free mini-guide with daily micro-actions and a printable worksheet. Join the list — instant download.</p>
+      </div>
+      <form onsubmit="leadSignup(event)">
+        <input class="input" name="email" type="email" placeholder="email@domain.com" required />
+        <button class="btn" type="submit">Get the free guide</button>
+      </form>
+    </section>
+
+    <section class="two-col">
+      <div class="card" id="about">
+        <h3>About</h3>
+        <p style="color:var(--muted)">I create concise, actionable books for people who want fast, measurable improvement. No jargon—just routines, checklists and small daily habits that compound. Built from real experiments, reader feedback and a focus on simplicity.</p>
+        <p style="margin-top:10px;color:var(--muted)"><strong>Credibility:</strong> Early readers report consistent progress in 2–6 weeks. Methods distilled from time-tested productivity and training principles.</p>
+      </div>
+      <div class="card articles" id="articles">
+        <h3>Articles & Playbooks</h3>
+        <ul style="padding-left:18px;margin:8px 0 0 0">
+          <li><a href="#">3 Simple Morning Rituals That Protect Your Focus</a></li>
+          <li><a href="#">How to Build a 4-Week Habit Without Willpower</a></li>
+          <li><a href="#">A Minimal Guide to Daily Grooming & Posture</a></li>
+          <li><a href="#">Automate Small Savings: A Beginner's Playbook</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h3>Testimonials</h3>
+      <div class="testimonials">
+        <div class="test"><div class="rating">★★★★★</div><p style="margin:8px 0 0 0;color:var(--muted)">"Dropped 5kg and actually kept it off — the short routines fit my day." — R.</p></div>
+        <div class="test"><div class="rating">★★★★★</div><p style="margin:8px 0 0 0;color:var(--muted)">"Clear steps, zero fluff. I used the 10-day challenge and stuck to it." — S.</p></div>
+        <div class="test"><div class="rating">★★★★☆</div><p style="margin:8px 0 0 0;color:var(--muted)">"Simple, practical, saved me time and money." — A.</p></div>
+      </div>
+    </section>
+
+    <section class="faq" aria-label="FAQ">
+      <h3>FAQ</h3>
+      <div class="faq-item">
+        <div class="q" onclick="toggleFaq(this)">What formats are the books in?</div>
+        <div class="a">PDF by default. Optional EPUB/MOBI for select titles. Delivery is instant after purchase.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q" onclick="toggleFaq(this)">Do you offer refunds?</div>
+        <div class="a">If the file fails to deliver, we refund. For change-of-mind requests, contact support within 7 days and include your reading progress.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q" onclick="toggleFaq(this)">How do I use the books?</div>
+        <div class="a">Treat each title as a short playbook: read once, pick one micro-action each day, and track for 10–21 days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q" onclick="toggleFaq(this)">Is there a reading order?</div>
+        <div class="a">No strict order. Start with whichever matches your current priority (focus, fitness, finances).</div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h3>Contact</h3>
+      <form onsubmit="contactSubmit(event)">
+        <input class="input" name="name" type="text" placeholder="Name" required />
+        <input class="input" name="email" type="email" placeholder="Email" required />
+        <textarea name="message" placeholder="Message" required></textarea>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+          <button class="btn" type="submit">Send</button>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+        <div>&copy; Focuss Publishing</div>
+        <div style="color:var(--muted)">Designed for clarity — black & white, minimal.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Small interactions: toggle sample text, FAQ, nav
+    function openSample(e, id){
+      if(e) e.preventDefault();
+      const el = document.getElementById(id);
+      if(!el) return;
+      const visible = el.getAttribute('aria-hidden') === 'false';
+      document.querySelectorAll('.sample').forEach(s => s.setAttribute('aria-hidden','true'));
+      el.setAttribute('aria-hidden', String(!visible));
+    }
+    function toggleFaq(node){
+      const ans = node.nextElementSibling;
+      if(!ans) return;
+      const open = ans.style.display === 'block';
+      ans.style.display = open ? 'none' : 'block';
+    }
+    function toggleNav(){
+      const nav = document.querySelector('nav');
+      if(!nav) return;
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Fake lead magnet signup (replace with real integration)
+    function leadSignup(e){
+      e.preventDefault();
+      const email = e.target.querySelector('input[name=email]').value;
+      alert('Thanks — check '+email+' for the 10-Day Improvement Challenge (demo).');
+      e.target.reset();
+    }
+    function contactSubmit(e){
+      e.preventDefault();
+      alert('Message sent — thanks. This demo does not actually deliver messages.');
+      e.target.reset();
+    }
+
+    // Accessibility: close all samples on ESC
+    document.addEventListener('keydown', function(ev){
+      if(ev.key === 'Escape'){
+        document.querySelectorAll('.sample').forEach(s => s.setAttribute('aria-hidden','true'));
+      }
+    });
+  </script>
+</body>
+</html>
